@@ -1,13 +1,3 @@
-
-# 4.1. Crear la función 'calcular_max' la cual recibirá por parámetro la lista de
-# héroes y una key (string) la cual representará el dato que deberá ser evaluado
-# a efectos de determinar cuál es el máximo de la lista. Por ejemplo la función
-# deberá poder calcular: el peso, la altura o fuerza máximas y retornar el héroe
-# que tenga el dato más alto.
-# Ejemplo de llamada:
-# calcular_max(lista, 'edad')
-
-
 def calcular_max(lista_heroes:list,key_heroe:str)->dict:
     """Calcular el maximo en un campo del diccionario
 
@@ -33,15 +23,6 @@ def calcular_max(lista_heroes:list,key_heroe:str)->dict:
             print("Error! Esa clave no existe en el diccionario")
     else:
         print("Error! Los parametros son invalidos")
-
-
-# 4.2. Crear la función 'calcular_min' la cual recibirá por parámetro la lista de
-# héroes y una key (string) la cual representará el dato que deberá ser evaluado
-# a efectos de determinar cuál es el mínimo de la lista. Por ejemplo la función
-# deberá poder calcular: el peso, la altura o fuerza máximas y retornar el héroe
-# que tenga el dato más bajo.
-# Ejemplo de llamada:
-# calcular_min(lista, 'edad')
 
 def calcular_min(lista_heroes:list,key_heroe:str)->dict:
     """Calcular el minimo en un campo del diccionario
@@ -69,17 +50,6 @@ def calcular_min(lista_heroes:list,key_heroe:str)->dict:
     else:
         print("Error! Los parametros son invalidos")
 
-# 4.3. Crear la funcion 'calcular_max_min_dato' la cual recibira tres parámetros:
-# ● La lista de héroes
-# ● El tipo de cálculo a realizar: es un valor string que puede tomar los
-# valores ‘maximo’ o ‘minimo’
-# ● Un string que representa la key del dato a calcular, por ejemplo: ‘altura’,
-# ‘peso’, ‘edad’, etc.
-# La función deberá retornar el héroe que cumpla con la condición pedida.
-# Reutilizar las funciones hechas en los puntos 4.1 y 4.2
-# Ejemplo de llamada:
-# calcular_max_min_dato(lista, "maximo", "edad")
-
 def calcular_max_min_dato(lista_heroes:list,calculo_realizar:str,key_heroe:str)->dict:
     """Calcular el maximo o minimo de un campo en un diccionario
 
@@ -105,12 +75,6 @@ def calcular_max_min_dato(lista_heroes:list,calculo_realizar:str,key_heroe:str)-
     else:
         print("Error! Los parametros son invalidos")
 
-# 5.1. Crear la función 'sumar_dato_heroe' la cual recibirá como parámetro una
-# lista de héroes y un string que representara el dato/key de los héroes que se
-# requiere sumar. Validar que cada héroe sea tipo diccionario y que no sea un
-# diccionario vacío antes de hacer la suma. La función deberá retorna la suma
-# de todos los datos según la key pasada por parámetro
-
 def sumar_dato_heroe(lista_heroes:list,key_heroe:str)->int:
     """Adquiere el total de un campo de diccionario
 
@@ -132,11 +96,6 @@ def sumar_dato_heroe(lista_heroes:list,key_heroe:str)->int:
     else:
         print("Error! Los parametros son invalidos")
 
-# 5.2. Crear la función ‘dividir’ la cual recibirá como parámetro dos números
-# (dividendo y divisor). Se debe verificar si el divisor es 0, en caso de serlo,
-# retornar 0, caso contrario realizar la división entre los parámetros y retornar el
-# resultado
-
 def dividir(dividendo:int|float,divisor:int|float)->float:
     """Valida que el divisor no sea 0 y realiza la division
 
@@ -156,12 +115,6 @@ def dividir(dividendo:int|float,divisor:int|float)->float:
             return 0
     else:
         print("Error! Los parametros son invalidos")
-
-# 5.3. Crear la función ‘calcular_promedio’ la cual recibirá como parámetro una
-# lista de héroes y un string que representa el dato del héroe que se requiere
-# calcular el promedio. La función debe retornar el promedio del dato pasado
-# por parámetro
-# IMPORTANTE: hacer uso de las las funciones creadas en los puntos 5.1 y 5.2
 
 def calcular_promedio(lista_heroes:list,key_heroe_calcular:str)->float:
     """Calcula el promedio

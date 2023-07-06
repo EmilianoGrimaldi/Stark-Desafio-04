@@ -49,28 +49,28 @@ def stark_marvel_app_5(lista_heroes:list)->None:
         match stark_menu_principal_desafio_5().upper():
             case "A":
                 if stark_guardar_heroe_genero(lista_heroes, "M"):
-                    pass
+                    print("Datos creados")
             case "B":
                 if stark_guardar_heroe_genero(lista_heroes, "F"):
-                    pass
+                    print("Datos creados")
             case "C":
                 if stark_calcular_imprimir_guardar_heroe_genero(lista_heroes, "maximo", "altura", "M"):
-                    pass
+                    print("Datos creados")
             case "D":
                 if stark_calcular_imprimir_guardar_heroe_genero(lista_heroes, "maximo", "altura", "F"):
-                    pass
+                    print("Datos creados")
             case "E":
                 if stark_calcular_imprimir_guardar_heroe_genero(lista_heroes, "minimo", "altura", "M"):
-                    pass
+                    print("Datos creados")
             case "F":
                 if stark_calcular_imprimir_guardar_heroe_genero(lista_heroes, "minimo", "altura", "F"):
-                    pass
+                    print("Datos creados")
             case "G":
                 if stark_calcular_imprimir_guardar_promedio_altura_genero(lista_heroes, "M"):
-                    pass
+                    print("Datos creados")
             case "H":
                 if stark_calcular_imprimir_guardar_promedio_altura_genero(lista_heroes, "F"):
-                    pass
+                    print("Datos creados")
             case "I":
                     heroe_max_o_min = calcular_max_min_dato_genero(lista_heroes,"maximo","altura","M")
                     heroe_imprimir = obtener_nombre_y_dato(heroe_max_o_min,"altura")
@@ -89,22 +89,22 @@ def stark_marvel_app_5(lista_heroes:list)->None:
                     imprimir_dato(heroe_imprimir)
             case "J":
                 if stark_calcular_cantidad_por_tipo(lista_heroes, "color_ojos"):
-                    pass
+                    print("Datos creados")
             case "K":
                 if stark_calcular_cantidad_por_tipo(lista_heroes, "color_pelo"):
-                    pass
+                    print("Datos creados")
             case "L":
                 if stark_calcular_cantidad_por_tipo(lista_heroes, "inteligencia"):
-                    pass
+                    print("Datos creados")
             case "M":
                 if stark_listar_heroes_por_dato(lista_heroes, "color_ojos"):
-                    pass
+                    print("Datos creados")
             case "N":
                 if stark_listar_heroes_por_dato(lista_heroes, "color_pelo"):
-                    pass
+                    print("Datos creados")
             case "O":
                 if stark_listar_heroes_por_dato(lista_heroes, "inteligencia"):
-                    pass
+                    print("Datos creados")
             case "Z":
                 break
         os.system("pause")
@@ -138,7 +138,7 @@ creado, conjuntamente con su extensión.
 """
 def guardar_archivo(nombre_archivo:str, contenido:str)->bool:
     try:
-        with open(f"Desafio #04\{nombre_archivo}", "w") as archivo:
+        with open(f"{nombre_archivo}", "w") as archivo:
             archivo.writelines(contenido)
 
         print(f"Se creó el archivo: {nombre_archivo}")
@@ -243,7 +243,7 @@ def stark_guardar_heroe_genero(lista_heroes:list, genero_evaluar:str) -> bool:
                     nombres_filtrados.append(nombre_capitalizado)
                     imprimir_dato(nombre_capitalizado)
     
-    if guardar_archivo(nombre_archivo, "\n".join(nombres_filtrados)):
+    if guardar_archivo(nombre_archivo, ",".join(nombres_filtrados)):
         return True
     else:
         return False
@@ -388,9 +388,10 @@ def stark_calcular_imprimir_guardar_heroe_genero(lista_heroes:list,calculo_reali
     heroe_max_o_min = calcular_max_min_dato_genero(lista_heroes,calculo_realizar,key_heroe,genero)
     heroe_imprimir = obtener_nombre_y_dato(heroe_max_o_min,key_heroe)
     imprimir_dato(f"{mensaje}: {heroe_imprimir}")
+
+    datos = ["nombre",heroe_max_o_min["nombre"],key_heroe,str(heroe_max_o_min[key_heroe])]
     
-    
-    if guardar_archivo(f"heroes_{calculo_realizar}_{key_heroe}_{genero}.csv",heroe_imprimir):
+    if guardar_archivo(f"heroes_{calculo_realizar}_{key_heroe}_{genero}.csv",",".join(datos)):
         return True
     else:
         return False
@@ -547,7 +548,9 @@ def calcular_cantidad_tipo(lista_heroes:list, tipo_key:str)-> dict:
     if len(lista_heroes) > 0:
         dic_clave_valor = {}
         for heroe in lista_heroes:
-            
+            if heroe["inteligencia"] == "":
+                heroe["inteligencia"] = "no tiene"
+                
             palabra_cap = capitalizar_palabras(heroe[tipo_key])
             
             if palabra_cap in dic_clave_valor:
@@ -590,14 +593,16 @@ La función retornará True si salió todo bien, False caso contrario.
 def guardar_cantidad_heroes_tipo(tipoDato:dict, dato:str)->bool:
     
     lista_formateada = []
+    datos = []
     separador = "\n"
     nombre_archivo = f"heroes_cantidad_{dato}.csv"
     
-    for key, value in tipoDato.items():
+    for key, value in tipoDato.items():  
         texto_formateado = f"Caracteristica: {dato} {key} - Cantidad de heroes: {value}"
+        datos.append(f"Caracteristica,{dato},{key},Cantidad de heroes,{value}")
         lista_formateada.append(texto_formateado)
-    
-    if guardar_archivo(nombre_archivo,separador.join(lista_formateada)):
+
+    if guardar_archivo(nombre_archivo,separador.join(datos)):
         return True
     else:
         return False
@@ -786,13 +791,15 @@ Esta función retorna True si salió todo bien, False caso contrario.
 def guardar_heroes_por_tipo(dict_tipos:dict, key_evaluar:str)->bool:
     nombre_archivo = f"heroes_segun_{key_evaluar}.csv"
     lista_formateada = []
+    datos = []
     
     for clave, nombres in dict_tipos.items():
         msj_formateado = f"{key_evaluar} {clave}: {' | '.join(nombres)}"
+        datos.append(f"{key_evaluar},{clave},{' | '.join(nombres)}")
         lista_formateada.append(msj_formateado)
             
             
-    if guardar_archivo(nombre_archivo,"\n".join(lista_formateada)):
+    if guardar_archivo(nombre_archivo,"\n".join(datos)):
         return True
     else:
         return False
